@@ -2,7 +2,12 @@ import random
 from functools import reduce
 from math import gcd
 
-from src.cli import greeting
+def greeting():
+    while not (name := input("Welcome to the Brain Games! May I have your name? ")):
+        pass
+
+    print(f"Hello, {name}!")
+    return name
 
 # Function to calculate LCM of two numbers
 def lcm(a, b):
@@ -47,5 +52,3 @@ def game(logic):
         else:
             print(f"'{guess}' is a wrong answer ;(."
                   f" Correct answer was '{answer}'. Let's try again, {name}!")
-
-game(game_progression)

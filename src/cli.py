@@ -1,6 +1,4 @@
-def greeting():
-    while not (name := input("Welcome to the Brain Games! May I have your name? ")):
-        pass
+from bin.brain_games import game, game_scm, game_progression
 
-    print(f"Hello, {name}!")
-    return name
+game(game_scm)
+game(game_progression)
