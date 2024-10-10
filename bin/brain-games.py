@@ -11,8 +11,7 @@ def lcm(a, b):
 def lcm_multiple(numbers):
     return reduce(lcm, numbers)
 
-def game_scm(name):
-
+def game_scm():
     print("Find the smallest common multiple of the given numbers.")
     numbers = random.sample(range(1, 50), 3)
     while lcm_multiple(numbers)>1000:
@@ -23,10 +22,23 @@ def game_scm(name):
     yield answer
     yield guess
 
+def game_progression():
+    l = random.randint(8, 12)
+    r = random.randint(3,5)
+    start = random.randint(1, r)
+    arr = [start * (r**i) for i in range(l)]
+    hidden_in = random.randint(0, len(arr)-1)
+    answer = arr[hidden_in]
+    arr[hidden_in] = ".."
+    yield f"{' '.join(map(str, arr))}"
+    guess = int(input("Your answer:  "))
+    yield answer
+    yield guess
+
 def game(logic):
     name = greeting()
     for i in range(3):
-        generator = logic(name)
+        generator = logic()
         print(f"Question: {next(generator)}")
         answer = next(generator)
         guess = next(generator)
@@ -36,4 +48,4 @@ def game(logic):
             print(f"'{guess}' is a wrong answer ;(."
                   f" Correct answer was '{answer}'. Let's try again, {name}!")
 
-game(game_scm)
+game(game_progression)
